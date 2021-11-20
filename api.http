@@ -1,0 +1,37 @@
+GET http://localhost:5000/posts/1
+###
+POST http://localhost:5000/comments
+Authorization: Basic eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImRhdGFJbmZvVXNlciI6eyJpZCI6NywicGFzc3dvcmQiOiIkMmIkMTAkc0ZoR2VvVExjUVRQeFF6SnUyLlcxdXM5YVI4eFVrY0NkdHh0TFRnYTBjb1lIZlFGOU5veU8iLCJlbWFpbCI6Im5ocDJzMTMyMUBnbWFpbC5jb20iLCJ2ZXJpZmllZCI6MCwicm9sZSI6InVzZXIifX0sImlhdCI6MTYzNzQxMTQwMSwiZXhwIjoxNjM4MDE2MjAxfQ.WNMCrNd06jXBMNbsgiL2K85jwL0NN9pLo3xZByVDI4KXFxd_Lbd__8punsV3wRIqOAIaBwX4BGs32vgeHkL-VQ
+Content-Type: application/json
+
+{
+    "comment": "string",
+    "postId": 1
+}
+
+####
+GET http://localhost:5000/comments/1
+###
+POST http://localhost:5000/users/sign-in
+Content-Type: application/json
+
+{
+    "email": "nhp2s1321@gmail.com",
+    "password":"123456"
+}
+###
+POST http://localhost:5000/users/sign-up
+Content-Type: application/json
+
+{
+   "email": "nhp2s1321@gmail.com",
+   "password":"123456",
+   "fullName": "Huu PHu"
+}
+###
+POST http://localhost:5000/posts
+Content-Type: application/json
+
+{
+    "post":"hihi"
+}

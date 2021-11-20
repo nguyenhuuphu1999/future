@@ -1,0 +1,60 @@
+version: '3'
+services:
+  future_app:
+    depends_on:
+      - future_mysql
+      - future_redis
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    image: future_app
+    container_name: future_app
+    restart: always
+    ports:
+      - 4003:3000
+    volumes:
+      - /root/future/test/images:/var/www/app/images
+      - /var/www/app/node_modules # anonymous volume for node_modules only
+    networks:
+      - app-tier
+
+  future_mysql:
+    image: mysql:8.0.24
+    container_name: future_mysql
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --default-authentication-plugin=mysql_native_password
+    restart: always
+    ports:
+      - '3301:3306'
+    volumes:
+      - /root/future/test/dbdata:/var/lib/mysql
+    networks:
+      - app-tier
+    environment:
+      - MYSQL_ROOT_PASSWORD=futur3
+      - MYSQL_DATABASE=future
+
+  phpmyadmin:
+    depends_on:
+      - future_mysql
+    image: phpmyadmin/phpmyadmin
+    container_name: future_phpmyadmin
+    restart: always
+    ports:
+      - '8089:80'
+    networks:
+      - app-tier
+    environment:
+      PMA_HOST: mysql
+      MYSQL_ROOT_PASSWORD: futur3
+
+  future_redis:
+    image: redis:6
+    container_name: future_redis
+    restart: always
+    ports:
+      - '6390:6379'
+    networks:
+      - app-tier
+
+networks:
+  app-tier:
