@@ -5,7 +5,7 @@
 ----- API get list comments by postId -------- 
 
 GET http://localhost:5000/posts/1
-- 
+
 ----------- API create a comment --------------
  Note: Authorization is require
 
@@ -19,7 +19,7 @@ Content-Type: application/json
     "comment": "string",
     "postId": 1
 }
--
+
 ------------- Create a Post -------------
 POST http://localhost:5000/posts
 
